@@ -20,7 +20,8 @@ You can ask any query or make any other conversation in the _Numismatics_ channe
 * Fork this repo to your github account
 * Clone it to your local directory
 * You can use `git clone <link to the repo>` in the folder you want to clone
-* Now, you are good to work on the project
+
 ### How to Setup Firebase
 * You can refer to *option 1* at [Firebase Documentation](https://firebase.google.com/docs/android/setup#console) for the setup process
 * **Avoid adding the dependencies(asked to add in the above guide), if you find it added already**
+* Now, you are good to work on the project
