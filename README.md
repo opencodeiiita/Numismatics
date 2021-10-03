@@ -8,15 +8,19 @@
 * You'll be able to some graphical analysis of your expenditure patterns
 
 ## Communication
-You can ask any query or make any other conversation in the _Numismatics_ channel of [***Opencode***](https://discord.com/invite/PX7uJCSXPw) discord, All useful links and information will be shared on thsi channel only.
+You can ask any query or make any other conversation in the _Numismatics_ channel of [***Opencode***](https://discord.com/invite/PX7uJCSXPw) discord, All useful links and information will be shared on this channel only.
 
-## Pre-requisites
+### Pre-requisites
 * Basic Git and Git-hub 
 * Basics of designing layouts using XML
 * Java Basics
+* Firebase Account
 
-## Setting up project
+### Setting up project
 * Fork this repo to your github account
 * Clone it to your local directory
 * You can use `git clone <link to the repo>` in the folder you want to clone
 * Now, you are good to work on the project
+### How to Setup Firebase
+* You can refer to *option 1* at [Firebase Documentation](https://firebase.google.com/docs/android/setup#console) for the setup process
+* **Avoid adding the dependencies(asked to add in the above guide), if you find it added already**
