@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Numismatics">
         <activity
+            android:name=".AddTransactionActivity"
+            android:exported="true" />
+        <activity
+            android:name=".TransactionDetailActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
