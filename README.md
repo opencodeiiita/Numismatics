@@ -50,9 +50,6 @@ You can ask any query or make any other conversation in the _Numismatics_ channe
 8. Go to `android/build.gradle` and uncomment `line 12`
 9. Go to `android/app/build.gradle` and uncomment `line 26 & 65`
 
-#### IOS - Connection
-
-Coming soon
 
 #### Enable Firebase services
 
