@@ -66,4 +66,5 @@ public class TransactionEntity {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
 }
