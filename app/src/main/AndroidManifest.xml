@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Numismatics">
         <activity
+            android:name=".AnalyticsActivity"
+            android:exported="true" />
+        <activity
             android:name=".AddTransaction"
             android:exported="true" />
         <activity
