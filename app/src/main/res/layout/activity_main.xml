@@ -6,22 +6,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/my_drawer_layout"
-    tools:ignore="HardcodedText"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter your Text here"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:gravity="center_horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/purple_200"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your Text here"
+            android:textColorHint="@color/white"
+            android:layout_margin="16dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
@@ -31,6 +43,8 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/navigation_drawer" />
+
+
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

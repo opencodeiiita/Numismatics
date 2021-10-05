@@ -1,6 +1,7 @@
 package com.example.numismatics;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 
