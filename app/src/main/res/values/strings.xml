@@ -20,4 +20,11 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="username_phone_number">Username/Phone Number</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="or_connect_using">or connect using</string>
+    <string name="continue_with_google">Continue with google</string>
+    <string name="don_t_have_an_account_sign_up">Don\'t have an account?<font color="#0000FF"> Sign Up</font></string>
 </resources>
