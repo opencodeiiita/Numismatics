@@ -1,18 +1,20 @@
-<resources
-    xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-        <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-            <!-- Primary brand color. -->
-            <item name="colorPrimary">@color/purple_500</item>
-            <item name="colorPrimaryVariant">@color/purple_700</item>
-            <item name="colorOnPrimary">@color/white</item>
-            <!-- Secondary brand color. -->
-            <item name="colorSecondary">@color/teal_200</item>
-            <item name="colorSecondaryVariant">@color/teal_700</item>
-            <item name="colorOnSecondary">@color/black</item>
-            <!-- Status bar color. -->
-            <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-            <!-- Customize your theme here. -->
-        </style>
-        <style name="MyAppTheme" parent="@style/AppTheme" />
+    <style name="Theme.Numismatics" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorOnSecondary">@color/accent</item>
+        <!-- Status bar color. -->
+        <!-- Customize your theme here. -->
+        <item name="android:textColorPrimary">@color/primary_text</item>
+        <item name="android:textColorSecondary">@color/secondary_text</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:divider">@color/divider</item>
+        <item name="android:tint">@color/icons</item>
+
+    </style>
 </resources>
