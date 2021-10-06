@@ -21,6 +21,9 @@ You can ask any query or make any other conversation in the _Numismatics_ channe
 * Clone it to your local directory
 * You can use `git clone <link to the repo>` in the folder you want to clone
 
+If your task doesn't include anything related to firebase, instead of setting it up, you can just comment out `id 'com.google.gms.google-services'`in plugins in build.gradle(app) to run and see the App working.
+But make sure to uncomment it before commiting.
+
 ### How to Setup Firebase
 * You can refer to *option 1* at [Firebase Documentation](https://firebase.google.com/docs/android/setup#console) for the setup process
 * **Avoid adding the dependencies(asked to add in the above guide), if you find it added already**
