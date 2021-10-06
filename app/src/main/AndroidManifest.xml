@@ -11,8 +11,7 @@
         android:theme="@style/Theme.Numismatics">
         <activity
             android:name=".SignupActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".AnalyticsActivity"
             android:exported="true" />
@@ -30,6 +29,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".SignInActivity"
+            android:exported="true">
         </activity>
 
         <meta-data
