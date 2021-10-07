@@ -1,4 +1,4 @@
-package com.example.anew;
+package com.example.numismatics;
 
 import androidx.appcompat.app.AppCompatActivity;
 
