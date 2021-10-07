@@ -1,4 +1,4 @@
 .ide* 
 .gradle*
 google-services.json
-local.properties
+local.p*

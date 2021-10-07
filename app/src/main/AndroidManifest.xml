@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Numismatics">
         <activity
+            android:name=".EditTransaction"
+            android:label="Edit Transaction"
+            android:exported="true" />
+        <activity
             android:name=".SignupActivity"
             android:exported="true"></activity>
         <activity
