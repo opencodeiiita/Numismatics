@@ -8,6 +8,7 @@
     android:id="@+id/my_drawer_layout"
     tools:context=".MainActivity">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,8 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/purple_200"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            app:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+            app:popupTheme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
 
         <EditText
             android:id="@+id/editTextTextPersonName"
