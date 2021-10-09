@@ -18,9 +18,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/purple_200"
-            app:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
-            app:popupTheme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
+            android:background="@color/cyan"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         <EditText
             android:id="@+id/editTextTextPersonName"
