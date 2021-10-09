@@ -146,17 +146,14 @@
         app:isDarkTheme="true" />
 
     <Button
-        android:id="@+id/facebook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="10dp"
-        android:background="#3F51B5"
-        android:drawableStart="@drawable/ic_facebook_icon"
-        android:letterSpacing="0.05"
-        android:text="Sign up with Facebook"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:textSize="14dp" />
+        android:id="@+id/buttonFacebookSignUp"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="#3F51B5"
+        android:drawableLeft="@drawable/ic_facebook_icon"
+        android:text="Sign Up"
+        android:textColor="@color/white"/>
 </LinearLayout>
