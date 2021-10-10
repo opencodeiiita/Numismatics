@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Delete;
 
 import java.util.List;
 
@@ -16,4 +17,7 @@ public interface TransactionDAO {
     @Query("SELECT * FROM `transaction` ORDER BY transactionID ASC")
     LiveData<List<TransactionEntity>> getTransactions();
 
+    @Query("DELETE FROM `transaction` WHERE transactionID = :id")
+    void deleteById(int id);
+    
 }
