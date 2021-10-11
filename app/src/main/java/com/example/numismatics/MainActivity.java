@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity{
                 int itemId = menuItem.getItemId();
                 if (itemId == R.id.nav_transaction) {
                     drawerLayout.closeDrawers();
+                    return true;
                 } else if (itemId == R.id.nav_analytics) {
                     Intent intent = new Intent(MainActivity.this, AnalyticsActivity.class);
                     startActivity(intent);
