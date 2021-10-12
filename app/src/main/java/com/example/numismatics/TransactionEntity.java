@@ -1,6 +1,9 @@
 package com.example.numismatics;
 
+import android.os.Build;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -10,6 +13,10 @@ import java.time.LocalDate;
 @Entity(tableName = "transaction")
 public class TransactionEntity {
 
+    public void setTransactionID(@NonNull Integer transactionID) {
+        this.transactionID = transactionID;
+    }
+
     @NonNull
     @PrimaryKey(autoGenerate = true)
     private Integer transactionID;
@@ -18,7 +25,7 @@ public class TransactionEntity {
     private Double cost;
 
     @ColumnInfo(name = "date")
-    private LocalDate date;
+    private String date;
 
     @ColumnInfo(name = "remark")
     private String remark;
@@ -26,14 +33,15 @@ public class TransactionEntity {
     public TransactionEntity() {
     }
 
-    public TransactionEntity(@NonNull Integer transactionID, Double cost, LocalDate date, String remark) {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public TransactionEntity(@NonNull Integer transactionID, Double cost, String date, String remark) {
         this.transactionID = transactionID;
         this.cost = cost;
         this.date = date;
         this.remark = remark;
     }
 
-    public TransactionEntity(Double cost, LocalDate date, String remark) {
+    public TransactionEntity(Double cost, String date, String remark) {
         this.cost = cost;
         this.date = date;
         this.remark = remark;
@@ -47,7 +55,7 @@ public class TransactionEntity {
         return cost;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -59,7 +67,7 @@ public class TransactionEntity {
         this.cost = cost;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
