@@ -10,12 +10,10 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/nav_header_desc"
-        android:paddingTop="8dp"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        android:id="@+id/imageView2"
+        android:layout_width="91dp"
+        android:layout_height="87dp"
+        app:srcCompat="@drawable/opencodelogo" />
 
     <TextView
         android:layout_width="match_parent"
@@ -29,4 +27,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nav_header_subtitle" />
+
 </LinearLayout>
