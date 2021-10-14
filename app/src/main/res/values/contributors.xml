@@ -14,9 +14,10 @@
     <item name="participant" type="string">
 
 <!--        Write your details here-->
-	      <participant>
+	<participant>
             <name>Shashwat Mittal</name>
             <github_id>shashwat-mittal</github_id>
+	</participant>
         <participant>
             <name>Dheeraj bhardwaj</name>
             <github_id>Dheeraj096</github_id>
