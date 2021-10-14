@@ -35,7 +35,10 @@
             <name>Sravya Kaviti</name>
             <github_id>sravyakaviti</github_id>
         </participant>
-
+    <participant>
+            <name>Agrim Verma</name>
+            <github_id>AgrimVerma</github_id>
+	</participant>
 
     </item>
 </resources>
