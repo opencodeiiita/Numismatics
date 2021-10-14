@@ -13,11 +13,11 @@
 <resources>
     <item name="participant" type="string">
 
-<!--        Write your details here-->
-	<participant>
+        <!--        Write your details here-->
+        <participant>
             <name>Shashwat Mittal</name>
             <github_id>shashwat-mittal</github_id>
-	</participant>
+        </participant>
         <participant>
             <name>Dheeraj bhardwaj</name>
             <github_id>Dheeraj096</github_id>
@@ -28,10 +28,11 @@
             <github_id>hotblooded058</github_id>
         </participant>
 
-	<participant>
+        <participant>
             <name>Kirtee Prajapati</name>
             <github_id>Kirtee-tech</github_id>
         </participant>
+        <participant>
             <name>Sravya Kaviti</name>
             <github_id>sravyakaviti</github_id>
         </participant>
@@ -41,7 +42,18 @@
             <github_id>devmrfitz</github_id>
         </participant>
    
-  <participant>
+        <participant>
+          <name>Rohan Babbar</name>
+          <github_id>rohanbabbar04</github_id>
+        </participant>
+          
+  
+
+        <participant>
+            <name>D Akshitha</name>
+            <github_id>AKI35429</github_id>
+        </participant>
+        <participant>
             <name>Agrim Verma</name>
             <github_id>AgrimVerma</github_id>
 	</participant>
