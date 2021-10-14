@@ -60,16 +60,28 @@
         <participant>
             <name>Agrim Verma</name>
             <github_id>AgrimVerma</github_id>
+
 	      </participant>
-	<participant>
+    	<participant>
             <name>Varun Tiwari</name>
             <github_id>varunKT001</github_id>
         </participant>
 	    
-	   <participant>
+	<participant>
+            <name>Kirti Singla</name>
+            <github_id>codesanta142</github_id>
+        </participant>
+
+  
+     	<participant>
+            <name>BOTTE SHREYA</name>
+            <github_id>shreya-0508</github_id>
+        </participant>
+
+       <participant>
             <name>Tanushree</name>
             <github_id>Tanushree-coder</github_id>
         </participant>
-        
+      
     </item>
 </resources>
