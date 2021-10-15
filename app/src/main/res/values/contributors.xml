@@ -66,7 +66,7 @@
             <name>Varun Tiwari</name>
             <github_id>varunKT001</github_id>
         </participant>
-
+	    
 	<participant>
             <name>Kirti Singla</name>
             <github_id>codesanta142</github_id>
@@ -77,10 +77,41 @@
             <name>BOTTE SHREYA</name>
             <github_id>shreya-0508</github_id>
         </participant>
+	<participant>
+            <name>AAYOUSHEE</name>
+            <github_id>aayoushee01</github_id>
+        </participant>
+
 
      	<participant>
             <name>Saumya Jain</name>
             <github_id>saumya-jain20</github_id>
+        </participant>
+
+
+       <participant>
+            <name>Tanushree</name>
+            <github_id>Tanushree-coder</github_id>
+        </participant>
+	    
+        <participant>
+            <name>Karus Manisha</name>
+            <github_id>sanjay395</github_id>
+        </participant>
+	    
+	<participant>
+            <name>Aditi Yadav</name>
+            <github_id>adtoria</github_id>
+        </participant>
+
+        <participant>
+            <name>Pratik Sarkate</name>
+            <github_id>Pratik-Sarkate</github_id>
+        </participant>  
+      
+        <participant>
+            <name>Rahul Singh</name>
+            <github_id>rahulsingh-20</github_id>
         </participant>
 
     </item>
