@@ -55,6 +55,12 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onChanged(List<TransactionEntity> transactionEntities) {
                 // update recycler view
+                transactionEntities.add(new TransactionEntity(120.0,"19/10/21","Food"));
+                transactionEntities.add(new TransactionEntity(550.0,"19/10/21","Recharge"));
+                transactionEntities.add(new TransactionEntity(100.0,"19/10/21","Not found!"));
+                transactionEntities.add(new TransactionEntity(130.0,"19/10/21","Tailor"));
+                transactionEntities.add(new TransactionEntity(140.0,"19/10/21","Accessories"));
+
                 adapter.setTransactionEntities(transactionEntities);
             }
         });
