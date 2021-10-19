@@ -5,6 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,12 +20,16 @@ import android.widget.RelativeLayout;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity{
     public DrawerLayout drawerLayout;
     public NavigationMenuItemView analytics;
-
+    private ViewModel viewModel;
     private RelativeLayout layout;
+    RoomDB database;
+    private LiveData<List<TransactionEntity>> dataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +40,24 @@ public class MainActivity extends AppCompatActivity{
         configureNavigationDrawer();
         configureToolbar();
 
+        database=RoomDB.getInstance(this);
+        dataList=database.transactionDAO().getTransactions();
+
+        RecyclerView recyclerView=findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+
+        MyAdapter adapter=new MyAdapter();
+        recyclerView.setAdapter(adapter);
+
+        viewModel= ViewModelProviders.of(this).get(ViewModel.class);
+        viewModel.getAllTransactions().observe(this, new Observer<List<TransactionEntity>>() {
+            @Override
+            public void onChanged(List<TransactionEntity> transactionEntities) {
+                // update recycler view
+                adapter.setTransactionEntities(transactionEntities);
+            }
+        });
     }
 
 
