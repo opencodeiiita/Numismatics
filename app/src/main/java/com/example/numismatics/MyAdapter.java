@@ -7,10 +7,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
+    private List<TransactionEntity> transactionEntity=new ArrayList<>();
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -21,12 +26,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+        TransactionEntity currentTransaction=transactionEntity.get(position);
+        holder.remark.setText(currentTransaction.getRemark());
+        holder.cost.setText(String.valueOf(currentTransaction.getCost()));
+        holder.date.setText(currentTransaction.getDate());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return transactionEntity.size();
+    }
+
+    public void setTransactionEntities(List<TransactionEntity> transactionEntity){
+        this.transactionEntity=transactionEntity;
+        notifyDataSetChanged();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
