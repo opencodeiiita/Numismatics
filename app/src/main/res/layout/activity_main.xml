@@ -29,7 +29,9 @@
             android:background="@drawable/searchview"
             android:gravity="center_horizontal"
             android:hint="Enter your Text here"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            android:queryBackground="@android:color/transparent"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
