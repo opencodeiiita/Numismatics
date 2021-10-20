@@ -1,5 +1,6 @@
 package com.example.numismatics;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity{
     RoomDB database;
     private LiveData<List<TransactionEntity>> dataList;
 
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,11 +59,11 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onChanged(List<TransactionEntity> transactionEntities) {
                 // update recycler view
-                transactionEntities.add(new TransactionEntity(120.0,"19/10/21","Food"));
-                transactionEntities.add(new TransactionEntity(550.0,"19/10/21","Recharge"));
-                transactionEntities.add(new TransactionEntity(100.0,"19/10/21","Not found!"));
-                transactionEntities.add(new TransactionEntity(130.0,"19/10/21","Tailor"));
-                transactionEntities.add(new TransactionEntity(140.0,"19/10/21","Accessories"));
+//                transactionEntities.add(new TransactionEntity(120.0,"19/10/21","Food"));
+//                transactionEntities.add(new TransactionEntity(550.0,"19/10/21","Recharge"));
+//                transactionEntities.add(new TransactionEntity(100.0,"19/10/21","Not found!"));
+//                transactionEntities.add(new TransactionEntity(130.0,"19/10/21","Tailor"));
+//                transactionEntities.add(new TransactionEntity(140.0,"19/10/21","Accessories"));
 
                 adapter.setTransactionEntities(transactionEntities);
             }
@@ -107,7 +111,7 @@ public class MainActivity extends AppCompatActivity{
             // Android home
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
-                    return true;
+                return true;
             // manage other entries if you have it ...
         }
         return true;
