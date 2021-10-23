@@ -19,16 +19,16 @@ public class TransactionEntity {
 
     @NonNull
     @PrimaryKey(autoGenerate = true)
-    private Integer transactionID;
+    protected Integer transactionID;
 
     @ColumnInfo(name = "cost")
-    private Double cost;
+    protected Double cost;
 
     @ColumnInfo(name = "date")
-    private String date;
+    protected String date;
 
     @ColumnInfo(name = "remark")
-    private String remark;
+    protected String remark;
 
     public TransactionEntity() {
     }
