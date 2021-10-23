@@ -1,5 +1,6 @@
 package com.example.numismatics;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,16 +12,22 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.DatabaseConfiguration;
+import androidx.room.InvalidationTracker;
+import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -32,7 +39,6 @@ public class MainActivity extends AppCompatActivity{
     private RelativeLayout layout;
     RoomDB database;
     private LiveData<List<TransactionEntity>> dataList;
-
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -47,14 +53,14 @@ public class MainActivity extends AppCompatActivity{
         database=RoomDB.getInstance(this);
         dataList=database.transactionDAO().getTransactions();
 
-        RecyclerView recyclerView=findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
         MyAdapter adapter=new MyAdapter();
         recyclerView.setAdapter(adapter);
 
-        viewModel= ViewModelProviders.of(this).get(ViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         viewModel.getAllTransactions().observe(this, new Observer<List<TransactionEntity>>() {
             @Override
             public void onChanged(List<TransactionEntity> transactionEntities) {
@@ -68,22 +74,32 @@ public class MainActivity extends AppCompatActivity{
                 adapter.setTransactionEntities(transactionEntities);
             }
         });
+
+        FloatingActionButton fab = findViewById(R.id.regular_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddTransaction.class);
+                startActivity(intent);
+            }
+        });
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menulist, menu);
         return true;
     }
+
     private void configureToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         ActionBar actionbar = getSupportActionBar();
         actionbar.setHomeAsUpIndicator(R.drawable.ic_nav_menu);
         actionbar.setDisplayHomeAsUpEnabled(true);
     }
+
     private void configureNavigationDrawer() {
         drawerLayout = findViewById(R.id.my_drawer_layout);
         NavigationView navView = findViewById(R.id.nav_view);
@@ -99,15 +115,15 @@ public class MainActivity extends AppCompatActivity{
                     startActivity(intent);
                     return true;
                 }
+
                 return false;
             }
         });
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int itemId = item.getItemId();
-        switch(itemId) {
+        switch (itemId) {
             // Android home
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
