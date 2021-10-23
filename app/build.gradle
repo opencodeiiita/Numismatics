@@ -36,6 +36,11 @@ dependencies {
     def room_version = "2.3.0"
     def lifecycle_version = "2.4.0-rc01"
 
+    implementation platform('com.google.firebase:firebase-bom:28.4.2')
+    implementation 'com.google.firebase:firebase-analytics'
+
+
+
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     implementation "android.arch.lifecycle:extensions:1.1.1"

@@ -1,4 +1,4 @@
 .ide* 
 .gradle*
-google-services.json
+app/src/google-services.json
 local.p*
