@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity{
         configureNavigationDrawer();
         configureToolbar();
 
-        database=RoomDB.getInstance(this);
-        dataList=database.transactionDAO().getTransactions();
+        //database=RoomDB.getInstance(this);
+        //dataList=database.transactionDAO().getTransactions();
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
