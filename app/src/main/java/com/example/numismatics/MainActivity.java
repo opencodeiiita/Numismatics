@@ -1,6 +1,6 @@
 package com.example.numismatics;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,22 +12,19 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.DatabaseConfiguration;
-import androidx.room.InvalidationTracker;
-import androidx.sqlite.db.SupportSQLiteOpenHelper;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
-
+import android.widget.Toast;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -39,12 +36,35 @@ public class MainActivity extends AppCompatActivity{
     private RelativeLayout layout;
     RoomDB database;
     private LiveData<List<TransactionEntity>> dataList;
+    private EditText amount,remark,date;
+    private int ADD_TRANSACTION_REQUEST=1;
+    boolean x=false;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        amount=findViewById(R.id.amount);
+        remark=findViewById(R.id.remark);
+        date=findViewById(R.id.date);
+        MaterialButtonToggleGroup materialButtonToggleGroup =
+                findViewById(R.id.toggleButtonGroup);
+        materialButtonToggleGroup.setSelectionRequired(true);
+        //int buttonId = materialButtonToggleGroup.getCheckedButtonId();
+        //MaterialButton button = materialButtonToggleGroup.findViewById(buttonId);
+        materialButtonToggleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
+            @Override
+            public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
+                if(isChecked){
+                    if(checkedId==R.id.earning)
+                        x=false;
+                    else if(checkedId==R.id.expense)
+                        x=true;
+                }
+            }
+        });
 
         layout = findViewById(R.id.layout);
         configureNavigationDrawer();
@@ -80,9 +100,29 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddTransaction.class);
-                startActivity(intent);
+                startActivityForResult(intent,ADD_TRANSACTION_REQUEST);
+                //startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==ADD_TRANSACTION_REQUEST && resultCode==RESULT_OK){
+            String amount=data.getStringExtra(AddTransaction.EXTRA_AMOUNT);
+            String remark=data.getStringExtra(AddTransaction.EXTRA_REMARK);
+            String date=data.getStringExtra(AddTransaction.EXTRA_DATE);
+            Double amt=Double.parseDouble(amount);
+            if(x)
+                amt=(-amt);
+            TransactionEntity transactionEntity=new TransactionEntity(amt,date, remark);
+            viewModel.insert(transactionEntity);
+            Toast.makeText(this, "Transaction saved !", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "Transaction not saved !", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
