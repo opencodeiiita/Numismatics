@@ -1,9 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TransactionnDetail">
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    android:gravity="center_horizontal"
+    android:background="#bde0fe"
+    android:orientation="vertical"
+    tools:context="com.example.numismatics.TransactionnDetail">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/transaction_detail"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:focusable="auto"
+        android:fontFamily="@font/arima_madurai_medium"
+        android:text="Transaction Details"
+        android:textAlignment="center"
+        android:textColor="@color/purple_700"
+        android:textSize="36dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/TID"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp">
+        <TextView
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:focusable="auto"
+            android:text="Transaction ID"
+            android:textAlignment="center"
+            android:textColor="@color/primary_text"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/editText1"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:hint="Dummy ID"
+            android:textSize="20dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/Amount"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp">
+        <TextView
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:focusable="auto"
+            android:text="Amount"
+            android:textAlignment="center"
+            android:textColor="@color/primary_text"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/editText2"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:textSize="20dp"
+            android:hint="Dummy Amount"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/Remark"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp">
+        <TextView
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:focusable="auto"
+            android:text="Remark"
+            android:textAlignment="center"
+            android:textColor="@color/primary_text"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/editText3"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:hint="Dummy Remark"
+            android:textSize="20dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/Date"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:focusable="auto"
+            android:text="Date"
+            android:textAlignment="center"
+            android:textColor="@color/primary_text"
+            android:textSize="24dp" />
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/editText4"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:textSize="20dp"
+            android:hint="Dummy Date"/>
+    </LinearLayout>
+</LinearLayout>
