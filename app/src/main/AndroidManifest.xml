@@ -32,7 +32,8 @@
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.example.numismatics.MainActivity" />
-        </activity>
+        </activity>>
+
         <activity
             android:name=".TransactionnDetail"
             android:exported="true"
