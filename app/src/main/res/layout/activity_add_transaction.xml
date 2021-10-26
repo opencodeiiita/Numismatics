@@ -81,7 +81,7 @@
 
                 >
                 <com.google.android.material.textfield.TextInputEditText
-
+                    android:id="@+id/add_amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
@@ -98,7 +98,7 @@
 
                 >
                 <com.google.android.material.textfield.TextInputEditText
-
+                    android:id="@+id/add_remark"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
@@ -120,7 +120,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     >
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/date"
+                        android:id="@+id/add_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
@@ -146,6 +146,7 @@
     </androidx.cardview.widget.CardView>
 
     <Button
+        android:id="@+id/add_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"

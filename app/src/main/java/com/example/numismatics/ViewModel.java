@@ -1,8 +1,10 @@
 package com.example.numismatics;
 
 import android.app.Application;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
@@ -14,6 +16,7 @@ public class ViewModel extends AndroidViewModel {
     private LiveData<List<TransactionEntity>> allTransactions;
     private TransactionEntity transactionEntity;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public ViewModel(@NonNull Application application) {
         super(application);
         repository=new TransactionRepository(application);
@@ -25,9 +28,7 @@ public class ViewModel extends AndroidViewModel {
     }
 
     public TransactionEntity getTransactionEntity(int id){
-        if (id== transactionEntity.getTransactionID())
-            return transactionEntity;
-        return null;
+        return repository.getTransactionEntity(id);
     }
 
     public LiveData<List<TransactionEntity>> getAllTransactions() {
