@@ -12,7 +12,12 @@
         <activity
             android:name=".EditTransaction"
             android:label="Edit Transaction"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.numismatics.MainActivity"/>
+        </activity>
         <activity
             android:name=".SignupActivity"
             android:exported="true"></activity>
@@ -22,7 +27,12 @@
         <activity
             android:name=".AddTransaction"
             android:label="Add Transaction"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.example.numismatics.MainActivity" />
+        </activity>>
         <activity
             android:name=".TransactionnDetail"
             android:exported="true" />

@@ -7,7 +7,16 @@
     android:gravity="center_horizontal"
     android:background="#bde0fe"
     android:orientation="vertical"
-    tools:context=".AddTransaction">
+    tools:context="com.example.numismatics.AddTransaction">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/add_my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/toggleButtonGroup"
@@ -16,7 +25,6 @@
         app:singleSelection="true"
         android:layout_margin="30dp"
         >
-
         <Button
             android:id="@+id/expense"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
