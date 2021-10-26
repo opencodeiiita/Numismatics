@@ -1,6 +1,8 @@
 package com.example.numismatics;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -21,6 +23,11 @@ public class AddTransaction extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_transaction);
         myCalendar = Calendar.getInstance();
+        Toolbar myChildToolbar =
+                findViewById(R.id.add_my_toolbar);
+        setSupportActionBar(myChildToolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
 
         edittext= findViewById(R.id.date);
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
