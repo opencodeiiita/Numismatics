@@ -17,12 +17,15 @@ import androidx.room.DatabaseConfiguration;
 import androidx.room.InvalidationTracker;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.accessibility.AccessibilityEventSource;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity{
     private LiveData<List<TransactionEntity>> dataList;
     private EditText amount,remark,date;
     private int ADD_TRANSACTION_REQUEST=1;
+    private Button sort_popup;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -56,8 +60,14 @@ public class MainActivity extends AppCompatActivity{
         amount=findViewById(R.id.add_amount);
         remark=findViewById(R.id.add_remark);
         date=findViewById(R.id.add_date);
+        sort_popup = findViewById(R.id.sort);
 
-
+        sort_popup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopup();
+            }
+        });
         layout = findViewById(R.id.layout);
         configureNavigationDrawer();
         configureToolbar();
@@ -155,5 +165,11 @@ public class MainActivity extends AppCompatActivity{
             // manage other entries if you have it ...
         }
         return true;
+    }
+
+    private void showPopup(){
+        Dialog popup= new Dialog(this);
+        popup.setContentView(R.layout.popup);
+        popup.show();
     }
 }

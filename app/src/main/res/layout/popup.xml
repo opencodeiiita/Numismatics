@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_vg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/primary_light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/popuptitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:text="Choose Sorting Order"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/date_asc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date-Aesc"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/date_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date-Desc"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/amount_asc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amount-Aesc"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/amount_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amount-Desc"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</RelativeLayout>
