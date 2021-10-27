@@ -1,6 +1,7 @@
 package com.example.numismatics;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,8 +23,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
@@ -39,6 +44,8 @@ public class MainActivity extends AppCompatActivity{
     private RelativeLayout layout;
     RoomDB database;
     private LiveData<List<TransactionEntity>> dataList;
+    private EditText amount,remark,date;
+    private int ADD_TRANSACTION_REQUEST=1;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -46,11 +53,16 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        amount=findViewById(R.id.add_amount);
+        remark=findViewById(R.id.add_remark);
+        date=findViewById(R.id.add_date);
+
+
         layout = findViewById(R.id.layout);
         configureNavigationDrawer();
         configureToolbar();
 
-        //database=RoomDB.getInstance(this);
+        database=RoomDB.getInstance(this);
         //dataList=database.transactionDAO().getTransactions();
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
@@ -64,12 +76,6 @@ public class MainActivity extends AppCompatActivity{
         viewModel.getAllTransactions().observe(this, new Observer<List<TransactionEntity>>() {
             @Override
             public void onChanged(List<TransactionEntity> transactionEntities) {
-                // update recycler view
-//                transactionEntities.add(new TransactionEntity(120.0,"19/10/21","Food"));
-//                transactionEntities.add(new TransactionEntity(550.0,"19/10/21","Recharge"));
-//                transactionEntities.add(new TransactionEntity(100.0,"19/10/21","Not found!"));
-//                transactionEntities.add(new TransactionEntity(130.0,"19/10/21","Tailor"));
-//                transactionEntities.add(new TransactionEntity(140.0,"19/10/21","Accessories"));
 
                 adapter.setTransactionEntities(transactionEntities);
             }
@@ -80,7 +86,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddTransaction.class);
-                startActivity(intent);
+                startActivityForResult(intent,ADD_TRANSACTION_REQUEST);
             }
         });
     }
@@ -120,6 +126,24 @@ public class MainActivity extends AppCompatActivity{
             }
         });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==ADD_TRANSACTION_REQUEST && resultCode==RESULT_OK){
+            String amount=data.getStringExtra(AddTransaction.EXTRA_AMOUNT);
+            String remark=data.getStringExtra(AddTransaction.EXTRA_REMARK);
+            String date=data.getStringExtra(AddTransaction.EXTRA_DATE);
+            Double amt=Double.parseDouble(amount);
+            TransactionEntity transactionEntity=new TransactionEntity(amt,date, remark);
+            viewModel.insert(transactionEntity);
+            Toast.makeText(this, "Transaction saved !", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "Transaction not saved !", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();

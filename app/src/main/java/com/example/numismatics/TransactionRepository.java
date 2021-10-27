@@ -2,32 +2,33 @@ package com.example.numismatics;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.os.Build;
 
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
 public class TransactionRepository {
-    private TransactionDAO transactioDao;
+    private TransactionDAO transactionDao;
     private LiveData<List<TransactionEntity>> allTransactions;
     private TransactionEntity transactionEntity;
 
-    public TransactionRepository(Application application)
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    TransactionRepository(Application application)
     {
         RoomDB database = RoomDB.getInstance(application);
-        transactioDao=database.transactionDAO();
-        allTransactions=transactioDao.getTransactions();
+        transactionDao=database.transactionDAO();
+        allTransactions=transactionDao.getTransactions();
     }
 
     public TransactionEntity getTransactionEntity(int id){
-        if (id== transactionEntity.getTransactionID())
-            return transactionEntity;
-        return null;
+        return transactionDao.transactionDetails(id);
     }
 
     public void insert(TransactionEntity transactionEntity)
     {
-        new InsertTransactionAsyncTask(transactioDao).execute(transactionEntity);
+        new InsertTransactionAsyncTask(transactionDao).execute(transactionEntity);
     }
 
     public LiveData<List<TransactionEntity>> getAllTransactions() {
@@ -36,16 +37,16 @@ public class TransactionRepository {
 
     public static class InsertTransactionAsyncTask extends AsyncTask<TransactionEntity,Void,Void>
     {
-        private TransactionDAO transactioDao;
+        private TransactionDAO transactionDao;
 
-        private InsertTransactionAsyncTask(TransactionDAO transactioDao)
+        InsertTransactionAsyncTask(TransactionDAO transactionDao)
         {
-            this.transactioDao=transactioDao;
+            this.transactionDao=transactionDao;
         }
 
         @Override
-        protected Void doInBackground(TransactionEntity... transactionEntities) {
-            transactioDao.insert(transactionEntities[0]);
+        protected Void doInBackground(final TransactionEntity... transactionEntities) {
+            transactionDao.insert(transactionEntities[0]);
             return null;
         }
     }
