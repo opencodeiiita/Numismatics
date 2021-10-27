@@ -17,12 +17,14 @@ import androidx.room.DatabaseConfiguration;
 import androidx.room.InvalidationTracker;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -37,15 +39,16 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
     public DrawerLayout drawerLayout;
     public NavigationMenuItemView analytics;
     private ViewModel viewModel;
     private RelativeLayout layout;
     RoomDB database;
     private LiveData<List<TransactionEntity>> dataList;
-    private EditText amount,remark,date;
-    private int ADD_TRANSACTION_REQUEST=1;
+    private EditText amount, remark, date;
+    private int ADD_TRANSACTION_REQUEST = 1;
+    private Button sort_popup;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -53,23 +56,23 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        amount=findViewById(R.id.add_amount);
-        remark=findViewById(R.id.add_remark);
-        date=findViewById(R.id.add_date);
-
+        amount = findViewById(R.id.add_amount);
+        remark = findViewById(R.id.add_remark);
+        date = findViewById(R.id.add_date);
+        sort_popup = findViewById(R.id.sort);
 
         layout = findViewById(R.id.layout);
         configureNavigationDrawer();
         configureToolbar();
 
-        database=RoomDB.getInstance(this);
+        database = RoomDB.getInstance(this);
         //dataList=database.transactionDAO().getTransactions();
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        MyAdapter adapter=new MyAdapter();
+        MyAdapter adapter = new MyAdapter();
         recyclerView.setAdapter(adapter);
 
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
@@ -86,7 +89,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddTransaction.class);
-                startActivityForResult(intent,ADD_TRANSACTION_REQUEST);
+                startActivityForResult(intent, ADD_TRANSACTION_REQUEST);
             }
         });
     }
@@ -130,16 +133,15 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==ADD_TRANSACTION_REQUEST && resultCode==RESULT_OK){
-            String amount=data.getStringExtra(AddTransaction.EXTRA_AMOUNT);
-            String remark=data.getStringExtra(AddTransaction.EXTRA_REMARK);
-            String date=data.getStringExtra(AddTransaction.EXTRA_DATE);
-            Double amt=Double.parseDouble(amount);
-            TransactionEntity transactionEntity=new TransactionEntity(amt,date, remark);
+        if (requestCode == ADD_TRANSACTION_REQUEST && resultCode == RESULT_OK) {
+            String amount = data.getStringExtra(AddTransaction.EXTRA_AMOUNT);
+            String remark = data.getStringExtra(AddTransaction.EXTRA_REMARK);
+            String date = data.getStringExtra(AddTransaction.EXTRA_DATE);
+            Double amt = Double.parseDouble(amount);
+            TransactionEntity transactionEntity = new TransactionEntity(amt, date, remark);
             viewModel.insert(transactionEntity);
             Toast.makeText(this, "Transaction saved !", Toast.LENGTH_SHORT).show();
-        }
-        else{
+        } else {
             Toast.makeText(this, "Transaction not saved !", Toast.LENGTH_SHORT).show();
         }
     }
@@ -153,7 +155,15 @@ public class MainActivity extends AppCompatActivity{
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
             // manage other entries if you have it ...
+            case R.id.sort:
+                showPopup();
+                break;
         }
         return true;
+    }
+
+    private void showPopup() {
+       ExPopup exPopup= new ExPopup();
+       exPopup.show(getSupportFragmentManager(),"Dialog");
     }
 }
