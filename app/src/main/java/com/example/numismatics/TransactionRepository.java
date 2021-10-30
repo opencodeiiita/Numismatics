@@ -31,6 +31,11 @@ public class TransactionRepository {
         new InsertTransactionAsyncTask(transactionDao).execute(transactionEntity);
     }
 
+    public void delete(TransactionEntity transactionEntity)
+    {
+        new DeleteTransactionAsyncTask(transactionDao).execute(transactionEntity);
+    }
+
     public LiveData<List<TransactionEntity>> getAllTransactions() {
         return allTransactions;
     }
@@ -47,6 +52,23 @@ public class TransactionRepository {
         @Override
         protected Void doInBackground(final TransactionEntity... transactionEntities) {
             transactionDao.insert(transactionEntities[0]);
+            return null;
+        }
+    }
+
+    public static class DeleteTransactionAsyncTask extends AsyncTask<TransactionEntity,Void,Void>
+    {
+
+        private TransactionDAO transactionDao;
+
+        DeleteTransactionAsyncTask(TransactionDAO transactionDao)
+        {
+            this.transactionDao=transactionDao;
+        }
+
+        @Override
+        protected Void doInBackground(final TransactionEntity... transactionEntities) {
+            transactionDao.delete(transactionEntities[0]);
             return null;
         }
     }

@@ -14,6 +14,9 @@ public interface TransactionDAO {
     @Insert
     void insert(TransactionEntity transaction);
 
+    @Delete
+    void delete(TransactionEntity transaction);
+
     @Query("SELECT * FROM `transaction` ORDER BY transactionID ASC")
     LiveData<List<TransactionEntity>> getTransactions();
 
