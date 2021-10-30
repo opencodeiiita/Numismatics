@@ -27,6 +27,10 @@ public class ViewModel extends AndroidViewModel {
         repository.insert(transactionEntity);
     }
 
+    public void delete(TransactionEntity transactionEntity){
+        repository.delete(transactionEntity);
+    }
+
     public TransactionEntity getTransactionEntity(int id){
         return repository.getTransactionEntity(id);
     }

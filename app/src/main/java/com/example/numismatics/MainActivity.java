@@ -39,7 +39,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MyAdapter.onDeleteClickListener {
     public DrawerLayout drawerLayout;
     public NavigationMenuItemView analytics;
     private ViewModel viewModel;
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        MyAdapter adapter = new MyAdapter();
+        MyAdapter adapter = new MyAdapter(this);
         recyclerView.setAdapter(adapter);
 
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
@@ -165,5 +165,10 @@ public class MainActivity extends AppCompatActivity {
     private void showPopup() {
        ExPopup exPopup= new ExPopup();
        exPopup.show(getSupportFragmentManager(),"Dialog");
+    }
+
+    @Override
+    public void onDeleteClickListener(TransactionEntity transactionEntity) {
+        viewModel.delete(transactionEntity);
     }
 }
