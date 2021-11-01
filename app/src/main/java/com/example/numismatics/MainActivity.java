@@ -18,6 +18,7 @@ import androidx.room.InvalidationTracker;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -123,6 +124,14 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onDelet
                     Intent intent = new Intent(MainActivity.this, AnalyticsActivity.class);
                     startActivity(intent);
                     return true;
+                } else if (itemId == R.id.nav_share) {
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    String title = getResources().getString(R.string.chooser_title);
+                    Intent chooser = Intent.createChooser(intent, title);
+                    try {
+                        startActivity(chooser);
+                    } catch (ActivityNotFoundException e) {
+                    }
                 }
 
                 return false;
