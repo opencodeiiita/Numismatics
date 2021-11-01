@@ -28,4 +28,6 @@
     <string name="continue_with_google">Continue with google</string>
     <string name="don_t_have_an_account_sign_up">Don\'t have an account?<font color="#0000FF"> Sign Up</font></string>
     <string name="date">Date</string>
+    <string name="end_date">End Date</string>
+    <string name="start_date">Start Date</string>
 </resources>
