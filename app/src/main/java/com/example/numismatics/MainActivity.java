@@ -22,6 +22,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,7 +41,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements MyAdapter.onDeleteClickListener {
+public class MainActivity extends AppCompatActivity implements MyAdapter.onDeleteClickListener, MyAdapter.onClickListener,MyAdapter.onEditListener  {
     public DrawerLayout drawerLayout;
     public NavigationMenuItemView analytics;
     private ViewModel viewModel;
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onDelet
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddTransaction.class);
-                startActivityForResult(intent, ADD_TRANSACTION_REQUEST);
+                 startActivityForResult(intent, ADD_TRANSACTION_REQUEST);
             }
         });
     }
@@ -180,5 +181,25 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onDelet
     @Override
     public void onDeleteClickListener(TransactionEntity transactionEntity) {
         viewModel.delete(transactionEntity);
+        Log.d("sad", String.valueOf(transactionEntity));
+    }
+
+    @Override
+    public void onClickListener(TransactionEntity transactionEntity) {
+        Intent intent = new Intent(MainActivity.this,TransactionnDetail.class);
+        String id = String.valueOf(transactionEntity.getTransactionID());
+        intent.putExtra("transactionEntity",id);
+        startActivity(intent);
+
+        Log.d("sad", String.valueOf(transactionEntity.getTransactionID()));
+    }
+
+    @Override
+    public void onEditListener(TransactionEntity transactionEntity) {
+        Intent intent = new Intent(MainActivity.this,EditTransaction.class);
+        String id = String.valueOf(transactionEntity.getTransactionID());
+        intent.putExtra("transactionEntity",id);
+        startActivity(intent);
+
     }
 }

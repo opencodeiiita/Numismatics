@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +25,25 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         void onDeleteClickListener(TransactionEntity transactionEntity);
     }
 
-    public MyAdapter(onDeleteClickListener listener){
-        this.onDeleteClickListener=listener;
+    public interface onClickListener {
+        void onDeleteClickListener(TransactionEntity transactionEntity);
+        void onClickListener(TransactionEntity transactionEntity);
+        void onEditListener(TransactionEntity transactionEntity);
     }
+
+
+//    public MyAdapter(onDeleteClickListener listener){
+//        this.onDeleteClickListener=listener;
+//    }
+    public MyAdapter(onClickListener listener){
+        this.onClickListener=listener;
+    }
+
+
 
     private List<TransactionEntity> transactionEntity=new ArrayList<>();
     private onDeleteClickListener onDeleteClickListener;
+    private onClickListener onClickListener;
 
     @NonNull
     @Override
@@ -53,14 +68,36 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                         .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                if(onDeleteClickListener!=null){
-                                    onDeleteClickListener.onDeleteClickListener(transactionEntity.get(position));
+                                if(onClickListener!=null){
+                                    onClickListener.onDeleteClickListener(transactionEntity.get(position));
                                 }
                                 dialogInterface.dismiss();
                             }
                         })
                         .setNegativeButton("Cancel",null)
                         .show();
+            }
+        });
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickListener.onEditListener(transactionEntity.get(position));
+
+            }
+        });
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickListener.onClickListener(transactionEntity.get(position));
+
+//                Intent intent = new Intent(MainActivity ,TransactionnDetail.class);
+                Log.d("sad","main view");
             }
         });
     }
@@ -75,10 +112,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         notifyDataSetChanged();
     }
 
+    public interface onEditListener {
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView remark,date,cost;
         ImageView edit,delete;
+        View view;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -87,7 +128,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             cost=(TextView) itemView.findViewById(R.id.cost);
             edit=(ImageView) itemView.findViewById(R.id.edit);
             delete=(ImageView) itemView.findViewById(R.id.delete);
-
+            view = (View) itemView.findViewById(R.id.transaction_item);
         }
     }
 

@@ -41,7 +41,7 @@
             android:textSize="24dp" />
         <TextView
             android:layout_weight="1"
-            android:id="@+id/editText1"
+            android:id="@+id/et_detail_tid"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:hint="Dummy ID"
@@ -62,7 +62,7 @@
             android:textSize="24dp" />
         <TextView
             android:layout_weight="1"
-            android:id="@+id/editText2"
+            android:id="@+id/et_detail_amount"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:textSize="20dp"
@@ -83,7 +83,7 @@
             android:textSize="24dp" />
         <TextView
             android:layout_weight="1"
-            android:id="@+id/editText3"
+            android:id="@+id/et_detail_remark"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:hint="Dummy Remark"
@@ -103,7 +103,7 @@
             android:textSize="24dp" />
         <TextView
             android:layout_weight="1"
-            android:id="@+id/editText4"
+            android:id="@+id/et_detail_date"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:textSize="20dp"

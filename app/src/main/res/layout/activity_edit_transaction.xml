@@ -55,7 +55,7 @@
 
                 >
                 <com.google.android.material.textfield.TextInputEditText
-
+                    android:id="@+id/eid"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
@@ -73,7 +73,7 @@
 
                 >
                 <com.google.android.material.textfield.TextInputEditText
-
+                    android:id="@+id/edit_amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
@@ -90,7 +90,7 @@
 
                 >
                 <com.google.android.material.textfield.TextInputEditText
-
+                    android:id="@+id/edit_remark"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
