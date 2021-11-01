@@ -40,7 +40,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements MyAdapter.onDeleteClickListener, MyAdapter.onClickListener {
+public class MainActivity extends AppCompatActivity implements MyAdapter.onDeleteClickListener, MyAdapter.onClickListener,MyAdapter.onEditListener  {
     public DrawerLayout drawerLayout;
     public NavigationMenuItemView analytics;
     private ViewModel viewModel;
@@ -182,5 +182,11 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onDelet
         startActivity(intent);
 
         Log.d("sad", String.valueOf(transactionEntity.getTransactionID()));
+    }
+
+    @Override
+    public void onEditListener(TransactionEntity transactionEntity) {
+        Intent intent = new Intent(MainActivity.this,EditTransaction.class);
+        startActivity(intent);
     }
 }

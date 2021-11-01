@@ -28,6 +28,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public interface onClickListener {
         void onDeleteClickListener(TransactionEntity transactionEntity);
         void onClickListener(TransactionEntity transactionEntity);
+        void onEditListener(TransactionEntity transactionEntity);
     }
 
 
@@ -83,6 +84,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
             }
         });
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickListener.onEditListener(transactionEntity.get(position));
+
+            }
+        });
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,6 +110,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void setTransactionEntities(List<TransactionEntity> transactionEntity){
         this.transactionEntity=transactionEntity;
         notifyDataSetChanged();
+    }
+
+    public interface onEditListener {
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
