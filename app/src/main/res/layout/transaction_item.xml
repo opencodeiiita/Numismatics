@@ -6,7 +6,10 @@
     android:layout_margin="5dp"
     android:background="@drawable/my_custom_layout"
     android:padding="15dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:clickable="true"
+    android:id="@+id/transaction_item"
+    android:focusable="true">
 
 
     <LinearLayout
