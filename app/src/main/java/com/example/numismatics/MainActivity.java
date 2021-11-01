@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onDelet
                     return true;
                 } else if (itemId == R.id.nav_share) {
                     Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
                     String title = getResources().getString(R.string.chooser_title);
                     Intent chooser = Intent.createChooser(intent, title);
                     try {
