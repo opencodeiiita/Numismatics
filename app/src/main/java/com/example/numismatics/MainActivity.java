@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onDelet
                 } else if (itemId == R.id.nav_share) {
                     Intent intent = new Intent(Intent.ACTION_SEND);
                     intent.setType("text/plain");
-                    intent.putExtra(Intent.EXTRA_TEXT, "Hey, checkout this app, it is great for managing all of your expenses as well as earnings https://github.com/opencodeiiita/Numismatics . Happy accounting!");
+                    intent.putExtra(Intent.EXTRA_TEXT, "Hey, checkout this app, it is great for managing all of your expenses as well as earnings https://github.com/opencodeiiita/Numismatics . \n \n Happy accounting!");
                     Intent chooser = Intent.createChooser(intent,null);
                     try {
                         startActivity(chooser);
