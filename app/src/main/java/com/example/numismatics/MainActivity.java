@@ -187,6 +187,9 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onDelet
     @Override
     public void onEditListener(TransactionEntity transactionEntity) {
         Intent intent = new Intent(MainActivity.this,EditTransaction.class);
+        String id = String.valueOf(transactionEntity.getTransactionID());
+        intent.putExtra("transactionEntity",id);
         startActivity(intent);
+
     }
 }
