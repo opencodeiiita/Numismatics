@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onDelet
         configureToolbar();
 
         database = RoomDB.getInstance(this);
-        //dataList=database.transactionDAO().getTransactions();
+        dataList=database.transactionDAO().getTransactions();
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onDelet
 
     private void searchDatabase(String query){
         String searchQuery="%"+query+"%";
-        viewModel.searchDatabase(searchQuery,"","").observe(this, new Observer<List<TransactionEntity>>() {
+        viewModel.searchDatabase(searchQuery).observe(this, new Observer<List<TransactionEntity>>() {
             @Override
             public void onChanged(List<TransactionEntity> transactionEntities) {
 
@@ -227,4 +227,33 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onDelet
             }
         });
     }
+//
+//    public void sort0(){
+//        viewModel.getAllTransactions0().observe(this, new Observer<List<TransactionEntity>>() {
+//            @Override
+//            public void onChanged(List<TransactionEntity> transactionEntities) {
+//
+//                adapter.setTransactionEntities(transactionEntities);
+//            }
+//        });
+//    }
+//    public void sort2(){
+//        viewModel.getAllTransactions2().observe(this, new Observer<List<TransactionEntity>>() {
+//            @Override
+//            public void onChanged(List<TransactionEntity> transactionEntities) {
+//
+//                adapter.setTransactionEntities(transactionEntities);
+//            }
+//        });
+//    }
+//    public void sort3(){
+//        viewModel.getAllTransactions3().observe(this, new Observer<List<TransactionEntity>>() {
+//            @Override
+//            public void onChanged(List<TransactionEntity> transactionEntities) {
+//
+//                adapter.setTransactionEntities(transactionEntities);
+//            }
+//        });
+//    }
+
 }

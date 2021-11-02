@@ -6,13 +6,12 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 public class ExPopup extends DialogFragment implements MyAdapter.onClickListener {
-    ViewModel viewModel;
-    TransactionEntity transactionEntity;
+
+    private ViewModel viewModel;
     MyAdapter adapter;
 
     @Override
@@ -26,18 +25,37 @@ public class ExPopup extends DialogFragment implements MyAdapter.onClickListener
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
-                    case 0:order("", transactionEntity.date, "ASC");
-                    case 1:order("", transactionEntity.date, "DESC");
-                    case 2:order("", transactionEntity.cost.toString(), "ASC");
-                    case 3:order("", transactionEntity.cost.toString(), "DESC");
+                    case 0:sort0();
+                    case 1:
+                    case 2:sort2();
+                    case 3:sort3();
                 }
             }
         });
         return builder.create();
     }
-    private void order(String query,String sortBy,String sortOrder){
 
-        viewModel.searchDatabase("",sortBy,sortOrder).observe(this, new Observer<List<TransactionEntity>>() {
+
+    public void sort0(){
+        viewModel.getAllTransactions0().observe(this, new Observer<List<TransactionEntity>>() {
+            @Override
+            public void onChanged(List<TransactionEntity> transactionEntities) {
+
+                adapter.setTransactionEntities(transactionEntities);
+            }
+        });
+    }
+    public void sort2(){
+        viewModel.getAllTransactions2().observe(this, new Observer<List<TransactionEntity>>() {
+            @Override
+            public void onChanged(List<TransactionEntity> transactionEntities) {
+
+                adapter.setTransactionEntities(transactionEntities);
+            }
+        });
+    }
+    public void sort3(){
+        viewModel.getAllTransactions3().observe(this, new Observer<List<TransactionEntity>>() {
             @Override
             public void onChanged(List<TransactionEntity> transactionEntities) {
 

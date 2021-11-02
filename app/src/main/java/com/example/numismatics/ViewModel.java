@@ -13,7 +13,7 @@ import java.util.List;
 public class ViewModel extends AndroidViewModel {
 
     private TransactionRepository repository;
-    private LiveData<List<TransactionEntity>> allTransactions;
+    private LiveData<List<TransactionEntity>> allTransactions,allTransactions0,allTransactions2,allTransactions3;
     private TransactionEntity transactionEntity;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -21,6 +21,10 @@ public class ViewModel extends AndroidViewModel {
         super(application);
         repository=new TransactionRepository(application);
         allTransactions=repository.getAllTransactions();
+        allTransactions0=repository.getAllTransactions0();
+        allTransactions2=repository.getAllTransactions2();
+        allTransactions3=repository.getAllTransactions3();
+
     }
 
     public void insert(TransactionEntity transactionEntity){
@@ -39,7 +43,18 @@ public class ViewModel extends AndroidViewModel {
         return allTransactions;
     }
 
-    public LiveData<List<TransactionEntity>> searchDatabase(String searchQuery, String sortBy, String sortOrder){
-        return repository.searchDatabase(searchQuery, sortBy, sortOrder);
+    public LiveData<List<TransactionEntity>> getAllTransactions0() {
+        return allTransactions0;
+    }
+    public LiveData<List<TransactionEntity>> getAllTransactions2() {
+        return allTransactions2;
+    }
+
+    public LiveData<List<TransactionEntity>> getAllTransactions3() {
+        return allTransactions3;
+    }
+
+    public LiveData<List<TransactionEntity>> searchDatabase(String searchQuery){
+        return repository.searchDatabase(searchQuery);
     }
 }
