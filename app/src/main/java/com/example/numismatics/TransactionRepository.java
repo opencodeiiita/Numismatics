@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TransactionRepository {
     private TransactionDAO transactionDao;
-    private LiveData<List<TransactionEntity>> allTransactions,allTransactions0,allTransactions2,allTransactions3;
+    private LiveData<List<TransactionEntity>> allTransactions;
     private TransactionEntity transactionEntity;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -20,9 +20,6 @@ public class TransactionRepository {
         RoomDB database = RoomDB.getInstance(application);
         transactionDao=database.transactionDAO();
         allTransactions=transactionDao.getTransactions();
-        allTransactions0=transactionDao.getTransactions0();
-        allTransactions2=transactionDao.getTransactions2();
-        allTransactions3=transactionDao.getTransactions3();
     }
 
     public TransactionEntity getTransactionEntity(int id){
@@ -41,18 +38,6 @@ public class TransactionRepository {
 
     public LiveData<List<TransactionEntity>> getAllTransactions() {
         return allTransactions;
-    }
-
-    public LiveData<List<TransactionEntity>> getAllTransactions0() {
-        return allTransactions0;
-    }
-
-    public LiveData<List<TransactionEntity>> getAllTransactions2() {
-        return allTransactions2;
-    }
-
-    public LiveData<List<TransactionEntity>> getAllTransactions3() {
-        return allTransactions3;
     }
 
     public LiveData<List<TransactionEntity>> searchDatabase(String searchQuery){

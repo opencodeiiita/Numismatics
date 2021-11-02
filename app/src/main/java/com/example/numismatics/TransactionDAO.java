@@ -20,15 +20,6 @@ public interface TransactionDAO {
     @Query("SELECT * FROM `transaction` ORDER BY date DESC")
     LiveData<List<TransactionEntity>> getTransactions();
 
-    @Query("SELECT * FROM `transaction` ORDER BY date ASC")
-    LiveData<List<TransactionEntity>> getTransactions0();
-
-    @Query("SELECT * FROM `transaction` ORDER BY cost ASC")
-    LiveData<List<TransactionEntity>> getTransactions2();
-
-    @Query("SELECT * FROM `transaction` ORDER BY cost DESC")
-    LiveData<List<TransactionEntity>> getTransactions3();
-
     @Query("DELETE FROM `transaction` WHERE transactionID = :id")
     void deleteById(int id);
 
