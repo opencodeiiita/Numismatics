@@ -1,10 +1,10 @@
 package com.example.numismatics;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -13,11 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.DatabaseConfiguration;
-import androidx.room.InvalidationTracker;
-import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
-import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Build;
@@ -31,17 +27,14 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements MyAdapter.onDeleteClickListener, MyAdapter.onClickListener,MyAdapter.onEditListener  {
+public class MainActivity extends AppCompatActivity implements MyAdapter.onDeleteClickListener, MyAdapter.onClickListener,MyAdapter.onEditListener, SearchView.OnQueryTextListener {
     public DrawerLayout drawerLayout;
     public NavigationMenuItemView analytics;
     private ViewModel viewModel;
@@ -49,8 +42,10 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onDelet
     RoomDB database;
     private LiveData<List<TransactionEntity>> dataList;
     private EditText amount, remark, date;
+    SearchView search;
     private int ADD_TRANSACTION_REQUEST = 1;
     private Button sort_popup;
+    MyAdapter adapter;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -62,6 +57,9 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onDelet
         remark = findViewById(R.id.add_remark);
         date = findViewById(R.id.add_date);
         sort_popup = findViewById(R.id.sort);
+        search=findViewById(R.id.search);
+
+        search.setOnQueryTextListener(this);
 
         layout = findViewById(R.id.layout);
         configureNavigationDrawer();
@@ -74,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onDelet
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        MyAdapter adapter = new MyAdapter(this);
+        adapter = new MyAdapter(this);
         recyclerView.setAdapter(adapter);
 
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
@@ -201,5 +199,32 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onDelet
         intent.putExtra("transactionEntity",id);
         startActivity(intent);
 
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        if(query!=null){
+            searchDatabase(query);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String query) {
+        if(query!=null){
+            searchDatabase(query);
+        }
+        return true;
+    }
+
+    private void searchDatabase(String query){
+        String searchQuery="%"+query+"%";
+        viewModel.searchDatabase(searchQuery,"","").observe(this, new Observer<List<TransactionEntity>>() {
+            @Override
+            public void onChanged(List<TransactionEntity> transactionEntities) {
+
+                adapter.setTransactionEntities(transactionEntities);
+            }
+        });
     }
 }

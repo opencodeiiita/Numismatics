@@ -40,6 +40,10 @@ public class TransactionRepository {
         return allTransactions;
     }
 
+    public LiveData<List<TransactionEntity>> searchDatabase(String searchQuery, String sortBy, String sortOrder){
+        return transactionDao.searchDatabase(searchQuery,sortBy,sortOrder);
+    }
+
     public static class InsertTransactionAsyncTask extends AsyncTask<TransactionEntity,Void,Void>
     {
         private TransactionDAO transactionDao;

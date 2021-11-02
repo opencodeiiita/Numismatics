@@ -25,4 +25,7 @@ public interface TransactionDAO {
 
     @Query("SELECT * FROM `transaction` WHERE transactionID = :id")
     TransactionEntity transactionDetails(int id);
+
+    @Query("SELECT * FROM `transaction` WHERE remark LIKE :searchQuery ORDER BY :sortBy = date = :sortOrder DESC")
+    LiveData<List<TransactionEntity>> searchDatabase(String searchQuery, String sortBy, String sortOrder);
 }
