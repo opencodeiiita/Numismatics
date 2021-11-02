@@ -1,22 +1,30 @@
 package com.example.numismatics;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
 public class AnalyticsActivity extends AppCompatActivity {
-    private EditText edittext,edittext2;
+    private EditText edittext,edittext2,amount;
     private Calendar myCalendar, myCalendar2;
+    private Button submit;
+    private ViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +38,7 @@ public class AnalyticsActivity extends AppCompatActivity {
                 finish();
             }
         });
+        viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         myCalendar = Calendar.getInstance();
         myCalendar2 = Calendar.getInstance();
 
@@ -37,6 +46,19 @@ public class AnalyticsActivity extends AppCompatActivity {
         edittext2= findViewById(R.id.add_date2);
         initialiseDatePicker(myCalendar,edittext);
         initialiseDatePicker(myCalendar2,edittext2);
+
+        Button submit = findViewById(R.id.add_submit);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(edittext.getText().toString().isEmpty() || edittext2.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(),"Please enter all the fields",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    amount.setText(String.valueOf(viewModel.range(edittext.getText().toString(),edittext2.getText().toString())));
+                }
+            }
+        });
 
     }
     private void initialiseDatePicker(Calendar myCalendar, EditText edittext){

@@ -3,6 +3,7 @@ package com.example.numismatics;
 import android.app.Application;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
@@ -20,10 +21,15 @@ public class TransactionRepository {
         RoomDB database = RoomDB.getInstance(application);
         transactionDao=database.transactionDAO();
         allTransactions=transactionDao.getTransactions();
+
     }
 
     public TransactionEntity getTransactionEntity(int id){
         return transactionDao.transactionDetails(id);
+    }
+
+    public double range(String start,String end){
+        return transactionDao.range(start,end);
     }
 
     public void insert(TransactionEntity transactionEntity)
@@ -35,7 +41,6 @@ public class TransactionRepository {
     {
         new DeleteTransactionAsyncTask(transactionDao).execute(transactionEntity);
     }
-
     public LiveData<List<TransactionEntity>> getAllTransactions() {
         return allTransactions;
     }
