@@ -2,6 +2,7 @@ package com.example.numismatics;
 
 import android.app.Application;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -33,6 +34,10 @@ public class ViewModel extends AndroidViewModel {
 
     public TransactionEntity getTransactionEntity(int id){
         return repository.getTransactionEntity(id);
+    }
+    public double range(String start,String end){
+
+        return repository.range(start,end);
     }
 
     public LiveData<List<TransactionEntity>> getAllTransactions() {
