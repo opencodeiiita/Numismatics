@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
@@ -21,7 +22,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class AnalyticsActivity extends AppCompatActivity {
-    private EditText edittext,edittext2,amount;
+    private EditText edittext,edittext2;
+    private TextView amount;
     private Calendar myCalendar, myCalendar2;
     private Button submit;
     private ViewModel viewModel;
@@ -42,6 +44,7 @@ public class AnalyticsActivity extends AppCompatActivity {
         myCalendar = Calendar.getInstance();
         myCalendar2 = Calendar.getInstance();
 
+        amount = (TextView) findViewById(R.id.amount);
         edittext= findViewById(R.id.add_date1);
         edittext2= findViewById(R.id.add_date2);
         initialiseDatePicker(myCalendar,edittext);
