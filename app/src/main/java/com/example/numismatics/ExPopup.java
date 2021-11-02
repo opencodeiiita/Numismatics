@@ -5,13 +5,18 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.Observer;
+
+import java.util.List;
 
 public class ExPopup extends DialogFragment {
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Choose Sorting Order");
         String[] order = {"Date-Aesc", "Date-Desc", "Amount-Aesc", "Amount-Desc"};
+
         builder.setItems(order, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

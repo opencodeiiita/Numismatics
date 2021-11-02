@@ -38,4 +38,8 @@ public class ViewModel extends AndroidViewModel {
     public LiveData<List<TransactionEntity>> getAllTransactions() {
         return allTransactions;
     }
+
+    public LiveData<List<TransactionEntity>> searchDatabase(String searchQuery){
+        return repository.searchDatabase(searchQuery);
+    }
 }

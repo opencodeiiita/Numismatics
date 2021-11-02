@@ -17,7 +17,7 @@ public interface TransactionDAO {
     @Delete
     void delete(TransactionEntity transaction);
 
-    @Query("SELECT * FROM `transaction` ORDER BY transactionID ASC")
+    @Query("SELECT * FROM `transaction` ORDER BY date DESC")
     LiveData<List<TransactionEntity>> getTransactions();
 
     @Query("DELETE FROM `transaction` WHERE transactionID = :id")
@@ -25,4 +25,7 @@ public interface TransactionDAO {
 
     @Query("SELECT * FROM `transaction` WHERE transactionID = :id")
     TransactionEntity transactionDetails(int id);
+
+    @Query("SELECT * FROM `transaction` WHERE remark LIKE :searchQuery")
+    LiveData<List<TransactionEntity>> searchDatabase(String searchQuery);
 }
